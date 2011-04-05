@@ -29,6 +29,7 @@
 #import "MMVimController.h"
 #import "MMVimView.h"
 #import "MMWindowController.h"
+#import "FileSystemItem.h"
 #import <PSMTabBarControl/PSMTabBarControl.h>
 
 
@@ -80,6 +81,11 @@ enum {
 
 @implementation MMVimView
 
+- (MMVimController *) vimController
+{
+	return vimController;
+}
+
 - (MMVimView *)initWithFrame:(NSRect)frame
                vimController:(MMVimController *)controller
 {
@@ -121,8 +127,9 @@ enum {
     [textView setTextContainerInset:NSMakeSize(left, top)];
 
     [textView setAutoresizingMask:NSViewNotSizable];
-    [self addSubview:textView];
-    
+	[self addSubview:textView];
+
+	
     // Create the tab view (which is never visible, but the tab bar control
     // needs it to function).
     tabView = [[NSTabView alloc] initWithFrame:NSZeroRect];
@@ -239,6 +246,9 @@ enum {
         [[NSColor secondarySelectedControlColor] set];
         [path stroke];
     }
+	
+	//[outlineView drawRect:rect];
+
 }
 
 - (MMTextView *)textView
@@ -630,6 +640,33 @@ enum {
     isDirty = YES;
 }
 
+
+
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
+    return (item == nil) ? 1 : [item numberOfChildren];
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+    return (item == nil) ? YES : ([item numberOfChildren] != -1);
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
+    return (item == nil) ? [FileSystemItem rootItem] : [(FileSystemItem *)item childAtIndex:index];
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
+    return (item == nil) ? @"/" : (id)[item relativePath];
+}
+
+// Delegate methods
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+    return NO;
+}
+
+
+
 @end // MMVimView
 
 
@@ -985,5 +1022,8 @@ enum {
     [super mouseDown:event];
     [connection removeRequestMode:NSEventTrackingRunLoopMode];
 }
+
+
+
 
 @end // MMScroller

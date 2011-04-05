@@ -42,6 +42,7 @@
 #import "MMVimController.h"
 #import "MMWindowController.h"
 #import "Miscellaneous.h"
+#import "FileSystemItem.h"
 
 #ifdef MM_ENABLE_PLUGINS
 #import "MMPlugInManager.h"
@@ -1332,6 +1333,50 @@ fsEventCallback(ConstFSEventStreamRef streamRef,
 
     return array;
 }
+
+
+
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+{
+	return (item == nil) ? 1 : [item numberOfChildren];
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+	return (item == nil) ? YES : ([item numberOfChildren] != -1);
+}
+
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+{
+	return (item == nil) ? [FileSystemItem rootItem] : [(FileSystemItem *)item childAtIndex:index];
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+	return (item == nil) ? @"/" : [item relativePath];
+}
+
+/*
+ - (NSCell *)outlineView:(NSOutlineView *)outlineView dataCellForTableColumn:(NSTableColumn *)tableColumn item:(id)item
+ {
+ NSCell* returnCell = [tableColumn dataCell];
+ 
+ return returnCell;
+ }
+ */
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+    return NO;
+}
+
+
+
+
+
+
+
 
 @end // MMAppController
 

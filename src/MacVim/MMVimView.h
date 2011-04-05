@@ -26,6 +26,8 @@
     MMTextView          *textView;
     NSMutableArray      *scrollbars;
     BOOL                isDirty;
+	
+	NSOutlineView		*outlineView;
 }
 
 - (MMVimView *)initWithFrame:(NSRect)frame vimController:(MMVimController *)c;
@@ -58,5 +60,7 @@
 - (void)setFrameSize:(NSSize)size;
 - (void)setFrame:(NSRect)frame;
 - (void)markDirty;
+
+- (MMVimController *) vimController;
 
 @end

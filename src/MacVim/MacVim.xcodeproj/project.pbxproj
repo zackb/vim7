@@ -14,6 +14,11 @@
 		0395A9C30D75D04D00881434 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0395A9C20D75D04D00881434 /* Security.framework */; };
 		0395AA780D76E77800881434 /* Info in Copy ODBEditor */ = {isa = PBXBuildFile; fileRef = 0395AA770D76E77800881434 /* Info */; };
 		0395AAAD0D76E94000881434 /* Edit in ODBEditor.bundle in Copy ODBEditor */ = {isa = PBXBuildFile; fileRef = 0395AA210D76E22700881434 /* Edit in ODBEditor.bundle */; };
+		1498F113114366B500C87D62 /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498F112114366B500C87D62 /* ImageAndTextCell.m */; };
+		1498F119114366FC00C87D62 /* BaseNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498F118114366FC00C87D62 /* BaseNode.m */; };
+		1498F11D1143671F00C87D62 /* NSArray_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498F11C1143671F00C87D62 /* NSArray_Extensions.m */; };
+		1498F1C4114459B800C87D62 /* FileSystemItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498F1C3114459B800C87D62 /* FileSystemItem.m */; };
+		1498F3B21144B93B00C87D62 /* ZBFSDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498F3B11144B93B00C87D62 /* ZBFSDataSource.m */; };
 		1D09AB420C6A4D520045497E /* MMTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D09AB400C6A4D520045497E /* MMTypesetter.m */; };
 		1D0E051C0BA5F83800B6049E /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D0E051B0BA5F83800B6049E /* Colors.plist */; };
 		1D145C7F0E5227CE00691AA0 /* MMTextViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D145C7E0E5227CE00691AA0 /* MMTextViewHelper.m */; };
@@ -179,6 +184,16 @@
 		0395AA770D76E77800881434 /* Info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Info; path = "edit-in-odb/Info"; sourceTree = "<group>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		1498F111114366B500C87D62 /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
+		1498F112114366B500C87D62 /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
+		1498F117114366FC00C87D62 /* BaseNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNode.h; sourceTree = "<group>"; };
+		1498F118114366FC00C87D62 /* BaseNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNode.m; sourceTree = "<group>"; };
+		1498F11B1143671F00C87D62 /* NSArray_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_Extensions.h; sourceTree = "<group>"; };
+		1498F11C1143671F00C87D62 /* NSArray_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_Extensions.m; sourceTree = "<group>"; };
+		1498F1C2114459B800C87D62 /* FileSystemItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystemItem.h; sourceTree = "<group>"; };
+		1498F1C3114459B800C87D62 /* FileSystemItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemItem.m; sourceTree = "<group>"; };
+		1498F3B01144B93B00C87D62 /* ZBFSDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBFSDataSource.h; sourceTree = "<group>"; };
+		1498F3B11144B93B00C87D62 /* ZBFSDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBFSDataSource.m; sourceTree = "<group>"; };
 		1D09AB3F0C6A4D520045497E /* MMTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MMTypesetter.h; sourceTree = "<group>"; };
 		1D09AB400C6A4D520045497E /* MMTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MMTypesetter.m; sourceTree = "<group>"; };
 		1D0E051B0BA5F83800B6049E /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
@@ -313,6 +328,16 @@
 		080E96DDFE201D6D7F000001 /* MacVim Source */ = {
 			isa = PBXGroup;
 			children = (
+				1498F3B01144B93B00C87D62 /* ZBFSDataSource.h */,
+				1498F3B11144B93B00C87D62 /* ZBFSDataSource.m */,
+				1498F1C2114459B800C87D62 /* FileSystemItem.h */,
+				1498F1C3114459B800C87D62 /* FileSystemItem.m */,
+				1498F11B1143671F00C87D62 /* NSArray_Extensions.h */,
+				1498F11C1143671F00C87D62 /* NSArray_Extensions.m */,
+				1498F117114366FC00C87D62 /* BaseNode.h */,
+				1498F118114366FC00C87D62 /* BaseNode.m */,
+				1498F111114366B500C87D62 /* ImageAndTextCell.h */,
+				1498F112114366B500C87D62 /* ImageAndTextCell.m */,
 				1D6008890E96A0B2003763F0 /* MMFindReplaceController.h */,
 				1D60088A0E96A0B2003763F0 /* MMFindReplaceController.m */,
 				1DE63FF90E71820F00959BDB /* MMCoreTextView.h */,
@@ -690,6 +715,11 @@
 				1D145C7F0E5227CE00691AA0 /* MMTextViewHelper.m in Sources */,
 				1D60088B0E96A0B2003763F0 /* MMFindReplaceController.m in Sources */,
 				1DE63FFB0E71820F00959BDB /* MMCoreTextView.m in Sources */,
+				1498F113114366B500C87D62 /* ImageAndTextCell.m in Sources */,
+				1498F119114366FC00C87D62 /* BaseNode.m in Sources */,
+				1498F11D1143671F00C87D62 /* NSArray_Extensions.m in Sources */,
+				1498F1C4114459B800C87D62 /* FileSystemItem.m in Sources */,
+				1498F3B21144B93B00C87D62 /* ZBFSDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

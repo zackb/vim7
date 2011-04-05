@@ -66,6 +66,8 @@
 #import "MMWindow.h"
 #import "MMWindowController.h"
 #import "Miscellaneous.h"
+#import "ImageAndTextCell.h"
+#import "ZBFSDataSource.h"
 #import <PSMTabBarControl/PSMTabBarControl.h>
 
 
@@ -125,10 +127,11 @@
     // not exist).  The chosen values will put the window somewhere near the
     // top and in the middle of a 1024x768 screen.
     MMWindow *win = [[MMWindow alloc]
-            initWithContentRect:NSMakeRect(242,364,480,360)
+            initWithContentRect:NSMakeRect(242,364,1080,760)
                       styleMask:styleMask
                         backing:NSBackingStoreBuffered
                           defer:YES];
+	
     [win autorelease];
 
     self = [super initWithWindow:win];
@@ -147,11 +150,93 @@
     NSView *contentView = [win contentView];
     [contentView setAutoresizesSubviews:YES];
 
-    vimView = [[MMVimView alloc] initWithFrame:[contentView frame]
+   vimView = [[MMVimView alloc] initWithFrame:[contentView frame]
                                  vimController:vimController];
-    [vimView setAutoresizingMask:NSViewNotSizable];
-    [contentView addSubview:vimView];
+	[vimView setAutoresizingMask:NSViewNotSizable];
+    //[contentView addSubview:vimView];
 
+	outlineView = [[NSOutlineView alloc] initWithFrame: [contentView frame]];
+	//[outlineView setDelegate: vimView];
+	
+	ZBFSDataSource *ds = [[ZBFSDataSource alloc] init];
+	ds.vimView = vimView;
+
+	[outlineView setDataSource:	ds];
+	[outlineView setDelegate: ds];
+	[outlineView setTarget: ds];
+	[outlineView setDoubleAction: @selector(doubleClick:)];
+	
+	NSTableColumn *c = [[NSTableColumn alloc] initWithIdentifier: @"NAME"];
+	[c setEditable: NO];
+	[c setMinWidth: 150.0];
+	//ImageAndTextCell *imageAndTextCell = [[[ImageAndTextCell alloc] init] autorelease];
+	//[imageAndTextCell setEditable:YES];
+	//[c setDataCell:imageAndTextCell];
+	
+	//NSTextFieldCell *cell = [[NSTextFieldCell alloc] initTextCell: @"HELLO"];
+	//[c setDataCell: cell];
+
+	[outlineView addTableColumn: c];
+	[outlineView setOutlineTableColumn: c];
+	
+	[c release];
+		
+	[outlineView setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleSourceList];
+//	[outlineView setAutoresizesOutlineColumn: YES];
+	//[outlineView setAutosaveExpandedItems: YES];
+//	[outlineView setIndentationPerLevel:10.0];
+	[outlineView reloadData];
+	[outlineView expandItem: [outlineView itemAtRow: 0]];
+
+	
+	scrollView = [[NSScrollView alloc] initWithFrame: [outlineView frame]];
+	//[scrollView addSubview: [outlineView headerView]];
+	//[scrollView addSubview: [outlineView cornerView]];
+	//[scrollView addSubview: outlineView];
+	
+	[scrollView setHasVerticalScroller: YES];
+	[scrollView setHasHorizontalScroller: YES];
+	[scrollView setDocumentView: outlineView];
+	[scrollView setAutoresizesSubviews: YES];
+	
+	NSDrawer *drawer = [[NSDrawer alloc] initWithContentSize:NSMakeSize(200.0, 400.0) preferredEdge:NSMinXEdge];
+	[drawer setParentWindow: win];
+	[drawer setContentView: scrollView];
+	[drawer open];
+
+	//viewController = [[NSViewController alloc] initWithNibName:@"ZBFSOutlineView" bundle:nil];
+	
+	
+	// apply our custom ImageAndTextCell for rendering the first column's cells
+	//NSTableColumn *tableColumn = [outlineView tableColumnWithIdentifier:@"NAME"];
+	//ImageAndTextCell *imageAndTextCell = [[[ImageAndTextCell alloc] init] autorelease];
+	//[imageAndTextCell setEditable:YES];
+	//[tableColumn setDataCell:imageAndTextCell];
+
+	//[outlineView addTableColumn: tableColumn];
+	//[outlineView reloadData];
+
+	
+	//splitView = [[NSSplitView alloc] initWithFrame: [contentView frame]];
+	//[splitView setVertical: YES];
+	
+	//[splitView setPosition: 100	ofDividerAtIndex:0];
+
+	
+	//[splitView addSubview: outlineView];
+	//[splitView addSubview: [viewController view]];
+	//[splitView addSubview: vimView];
+	//[splitView addSubview: [viewController view]];
+	//[contentView addSubview: splitView];
+	[contentView addSubview: vimView];
+	//[contentView addSubview: outlineView];
+	//[contentView addSubview: [viewController view]];
+	
+	
+	
+	
+	
+	
     [win setDelegate:self];
     [win setInitialFirstResponder:[vimView textView]];
     
@@ -1038,7 +1123,7 @@
         contentSize.height = rect.size.height;
     if (contentSize.width > rect.size.width)
         contentSize.width = rect.size.width;
-
+	
     return contentSize;
 }
 

@@ -39,6 +39,11 @@
     int                 userCols;
     NSPoint             userTopLeft;
     NSPoint             defaultTopLeft;
+	
+	NSOutlineView		*outlineView;
+	NSSplitView			*splitView;
+	NSScrollView		*scrollView;
+	NSViewController	*viewController;
 }
 
 - (id)initWithVimController:(MMVimController *)controller;
